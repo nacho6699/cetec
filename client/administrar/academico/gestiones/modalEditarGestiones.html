@@ -1,0 +1,31 @@
+<template name="modalEditarGestiones">
+	<!-- Modal -->
+<div class="modal fade mymodal" id="modalEditarGestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+	        <h3 class="modal-title" id="exampleModalLongTitle">Editar Gestion</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+      	</div>
+      	<form class="form" id="formEditarGestion">
+      		<div class="modal-body">
+            <div class="row">
+            	<label for="txt_gestion">Nueva gestión</label>
+               	<div class="input-field col s12">
+                 	<i class="material-icons prefix">assignment</i>
+                 	<input name='txt_gestion' type="number" class="validate txt_gestionEdit" value="{{gestion.gestion}}" required>
+                 	
+               	</div>
+            </div>
+	      	</div>
+	      	<div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn_crearGestionEdit" >Guardar cambios</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	     	</div>
+     	</form>
+    </div>
+  </div>
+</div>
+</template>

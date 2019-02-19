@@ -1,0 +1,112 @@
+<template name="verMatriculados">
+	
+		  <div class="card-panel">
+          <div class="row">
+            <div class="col l6 s12">
+              <h4>Buscar Estudiante por CI.</h4>
+	              <div class="input-field col s12">
+	                <i class="material-icons prefix">assignment</i>
+	                <input name='txt_ci' type="text" class="validate" id="txt_ciMatriculado" autocomplete="off" required>
+	                <label for="txt_ci">Cedula de Identidad</label>
+	              </div>
+
+						<ul class="collection with-header">
+			        <li class="collection-header #bbdefb"><h4>Lista de estudiantes</h4></li>
+			        {{#with estudiante}}
+				        	<li class="collection-item">
+				        		<div>
+								<strong>{{profile.nombres}} {{profile.apellidoP}} {{profile.apellidoM}}</strong>
+											
+									{{#with esMatriculado}}
+				        			<a href="#!" class="secondary-content btn_editarMatricula"  data-toggle="modal" data-target="#modalEditarMatricula">
+				        				<i class="material-icons">mode_edit</i>
+				        			</a>
+				        			<a href="#!" class="secondary-content red-text" id="btn_borrarMatricula">
+				        				<i class="material-icons">delete_forever</i>
+											</a>
+									{{else}}
+										<strong class="secondary-content red-text">
+											No matriculado
+										</strong>
+									{{/with}}
+				        		</div>
+				        	</li>
+				     {{else}}
+				     	<h4 class="center">Sin resultados...</h4>
+				     {{/with}}
+					</ul>
+					<!--para detalles-->
+					<blockquote class="cyan lighten-5 infoMatricula" style="border-color:#5234d4">
+				      <h3 class="text-info"><strong>Detalles de matricula </strong></h3>
+				      <strong><p class="blue-text">{{carreraEstudiante.nombreCarrera}}</p></strong>
+				      <!--para mostrar su carrera-->
+				      <p class="blue-text">
+								{{estudianteSelectcionado.profile.apellidoP}} 
+				    		{{estudianteSelectcionado.profile.apellidoM}}
+								{{estudianteSelectcionado.profile.nombres}}
+							</p>
+				      <strong>Clave: {{estudianteSelectcionado.profile.copiaPass}}</strong>	
+				      <!--para mostrar mis modulos del estudiante matriculado-->
+				      <h3 class="text-info">Modulos Asignados</h3>
+					  
+
+					  <table class="bordered responsive-table">
+							<thead>
+								<tr>
+									<th>N°</th>
+									<th>Carrera</th>
+									<th>Módulo</th>
+									<th>Materia</th>
+									<th>Grupo</th>
+									<th>Turno</th>
+								</tr>
+							</thead>
+							<tbody>
+							{{#each matriculas2}}
+								<tr>
+									<td></td>
+									<td>{{carrerasMatriculadas.nombreCarrera}}</td>
+									
+										{{#each modulos}}
+											<td>{{nombreModulo}}</td>
+											<td>{{nombreMateria}}</td>
+										{{/each}}
+										
+									<td>{{grupos.nombreGrupo}}</td>
+									<td>{{grupos.turno}}</td>
+								</tr>
+							{{else}}
+								<h4>Sin resultados</h4>
+				     		{{/each}}
+							</tbody>
+						</table>					
+				  </blockquote>
+						</div> 
+			    <div class="col l6 s12">
+							<h4>Buscar por carrera</h4>
+							<div class="row">
+									<div class="input-field">
+										<select class="browser-default sel_carreraMatri" required>
+											<option value="" disabled selected>--Carreras--</option>
+											{{#each carreras}}
+											<option value="{{_id}}">{{nombreCarrera}}</option>
+											{{/each}}
+										</select>
+									</div>
+							</div>
+
+							<ul class="collection with-header">
+									<li class="collection-header #bbdefb"><h4>Lista de estudiantes Matriculados</h4></li>
+									{{#each estudiantesMatriculados}}
+											<li class="collection-item">
+												<b>{{username}}</b> {{profile.apellidoP}} {{profile.apellidoM}} {{profile.nombres}}
+											</li>
+									{{else}}
+									 <h4 class="center">Sin resultados...</h4>
+								 {{/each}}
+							</ul>
+					</div> 
+				</div>        
+		</div>
+{{>modalEditarMatricula}}				
+</template>

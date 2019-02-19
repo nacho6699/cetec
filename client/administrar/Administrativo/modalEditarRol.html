@@ -1,0 +1,78 @@
+
+<template name="modalEditarRol">
+	<!-- Modal -->
+<div class="modal fade mymodal" id="modalEditarRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+	        <h3 class="modal-title" id="exampleModalLongTitle">Editar Permiso de usuario</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+      	</div>
+      	<form class="form" id="formEditarRol">
+      		<div class="modal-body">
+           
+        <div class="row">
+          <div class="col l4 m4 s12" style="padding:25px">
+            <p class="valign-wrapper">
+              <input type="radio" name="rol_edit" value="administrador" id="chek_adminR" checked />
+              <label for="chek_adminR">Administrador</label>
+            </p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="alert alert-info">
+              <strong>Administrador</strong> Usuario con todos los privilegios sobre el Sistema a cargo de toda la gestión académica y personal administrativo.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col l4 m4 s12" style="padding:25px">
+            <p class="valign-wrapper">
+              <input type="radio" name="rol_edit" value="adm_academico" id="chek_adminAcademicoR" />
+              <label for="chek_adminAcademicoR">Administrador Académico</label>
+            </p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="alert alert-info">
+              <strong>Administrador Académico</strong> Usuario con los privilegios de lectura y escritura sobre todo el sistema Académico.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col l4 m4 s12" style="padding:25px">
+            <p class="valign-wrapper">
+              <input type="radio" name="rol_edit" value="secretaria" id="chek_secretariaR" />
+              <label for="chek_secretariaR">Secretaria(o)</label>
+            </p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="alert alert-info">
+              <strong>Secretaria(o)</strong> Usuario con los privilegios de escritura (Matricular, Registrar docente,Designar docentes)
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col l4 m4 s12" style="padding:25px">
+            <p class="valign-wrapper">
+              <input type="radio" name="rol_edit" value="sinRol" id="chek_inscritoR" />
+              <label for="chek_inscritoR">Sin permisos</label>
+            </p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="alert alert-info">
+              <strong>Sin permisos</strong> Usuario que no cuenta con permisos.
+            </div>
+          </div>
+        </div>
+
+	      	</div>
+	      	<div class="modal-footer">
+                <button type="submit" class="btn btn-primary" >Guardar cambios</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	     	</div>
+     	</form>
+    </div>
+  </div>
+</div>
+</template>

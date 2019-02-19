@@ -1,0 +1,92 @@
+<template name="articulos">
+    <div class="col l6 m12 s12 right">
+        {{#if currentUser}}
+            {{#if isInRole 'administrador, adm_academico' 'admin'}}
+    		  {{> text_editor}}
+            {{/if}}  
+		{{/if}}
+        <div class="section col s12" id="publicaciones">
+            {{#if ready}}	
+				{{#each arti}}
+            <div class="card z-depth-5">
+                <div class="card-content" id="cabezaPublicacion">
+                    <span class="card-title white-text">
+                        <strong style="text-transform: capitalize;">
+                           {{titulo}}      
+                        </strong>    
+                        <small style="color:#fff;font-size:13px;">
+                            {{fechaPublicacion}}
+                        </small>
+                        {{#if currentUser}}
+                            {{#if isInRole 'administrador, adm_academico' 'admin'}}
+                                
+                                <a class="right" href="#" id="btn_borrar">
+                                    <i class="material-icons" style="font-size: 30px; color:red">
+                                        delete_forever
+                                    </i>
+                                </a>
+                                <a class="right" href="#" id="btn_habilitarComentario">
+                                    <i class="material-icons {{_id}}" style="font-size: 30px; color:white">
+                                        speaker_notes
+                                    </i>
+                                </a>
+                            {{/if}}    
+                        {{/if}}
+                    </span>
+                </div>
+                <div class="card-content">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        {{{contenido}}}
+                    </div>
+                </div>
+                {{#if $eq conComentario true}}
+                <div class="card-content" id="pie_comentarios">
+                    <span class="card-title activator white-text text-darken-2">
+                        <i class="small material-icons">insert_comment</i>
+                        <small>{{cantidadComents}} comentarios</small>
+                        <i class="material-icons right">
+                            more_vert
+                        </i>
+                    </span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                        {{titulo}}
+                        <i class="material-icons right">
+                            close
+                        </i>
+                        <hr>
+                    </span>
+                   
+                    <p>
+                        {{> comentarios}}
+                    </p>
+                    
+                </div>
+                {{/if}}
+            </div>
+            {{/each}}
+			{{else}}
+                <!--load-->
+                <div class="col l12 s12">
+                <div class="preloader-wrapper big active center-block ">
+                    <div class="spinner-layer spinner-blue-only center ">
+                        <div class="circle-clipper left">
+                            <div class="circle">
+                            </div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle">
+                            </div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</template>

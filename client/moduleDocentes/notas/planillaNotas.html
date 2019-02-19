@@ -1,0 +1,154 @@
+<template name="planillaNotas">
+	<div class="row contenidoPlanilla">
+      	<div class="col l12 m12 s12 ">
+        	<div class="card-panel white">
+         	
+         	<section id="sec_listaDesignacion">
+         		<h2>Planilla de notas gestión {{gestionActual}}
+					<a href="" class="secondary-content blue-text" id="btn_volverNotas">
+						<span class="glyphicon glyphicon-arrow-left"></span> Volver
+					</a>
+				 </h2><hr>
+         		<p>
+         			<strong>CARRERA: </strong>
+         			{{#each modulos}}
+						{{carrera.nombreCarrera}}
+	         		{{/each}}
+         		</p>
+         		<p>
+         			<strong>MODULO: </strong>
+         			{{#each modulos}}
+						{{nombreModulo}}
+	         		{{/each}}
+         		</p>
+         		<P>
+         			<strong>SIGLA: </strong>
+         			{{#each modulos}}
+						{{sigla}}
+	         		{{/each}}
+         		</P>
+         		<p>
+         			<strong>MATERIA: </strong>
+         			{{#each modulos}}
+						{{nombreMateria}}
+	         		{{/each}}
+         		</p>
+  				<p>
+  					<strong>GRUPO: </strong>
+  					{{grupo.nombreGrupo}}
+  				</p>
+
+         		<!--<form action="" class="formRegistrarNotas">-->
+				<div class="alert alert-warning" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Atencion:</span>
+					 Parciales=30, asistencia=15, evaluacion comunitaria=15, final escrito=20, final practico=20, segundaInstancia=51. 
+				 </div>				
+         	 	<table class="striped responsive-table t_calificar">
+		        	<caption>Lista de estudiantes a calificar</caption>
+		        	<!--<colgroup><col style="red"></colgroup> para agarrar toda una colomna-->
+			        <thead>
+			          <tr class="bg-primary">
+			              <th rowspan="2">N°</th>
+			              <th rowspan="2">CI</th>
+			              <th rowspan="2" class="th_nombres">Apellidos y Nombres</th>
+			              <th rowspan="2">1er Parcial</th>
+			              <th rowspan="2">2do Parcial</th>
+			              <th rowspan="2">Prom. Parciales</th>
+			              <th rowspan="2">Asistencia</th>
+			              
+			              <th rowspan="2">Eval. Continua</th>
+			              <th colspan="2">Examen Final</th>
+
+			              <th rowspan="2">Total</th>
+			              <th rowspan="2">Segunda instancia</th>
+			          </tr>
+			          <tr class="bg-primary">
+			          	<th>Escrito</th>
+			            <th>Práctico</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			        	
+			        	{{#each matriculados}}
+							{{#each estudiantes}}
+							
+								<tr class="{{_id}}" data-id_modulo="{{id_modulo}}" data-id_grupo="{{id_grupo}}" data-id_gestion="{{id_gestion}}">
+									<td class="td_notas"><!--N en css-->
+									</td>
+									<td class="td_notas">
+										{{username}}
+									</td>
+									<td class="td_notas">
+										{{profile.apellidoP}} {{profile.apellidoM}}, {{profile.nombres}}
+									</td>
+									
+									<td class="td_notas center">
+										<div class="campos">
+											<input type="number" name="primer{{_id}}" class="txt_primerP" data-id="{{_id}}" value="{{notas.primerP}}" min="0" max="30">
+										</div>
+									</td>
+									<td class="td_notas">
+										<div class="campos">
+											<input type="number" value="{{notas.segundoP}}" name="segundo{{_id}}" class="txt_segundoP">
+										</div>
+									</td>
+									<td class="td_notas">
+										<div class="campos center">
+											<input type="number" value="{{notas.promP}}" step="any" name="promP{{_id}}" class="txt_promP" disabled>
+										</div>
+									</td>
+									<td class="td_notas">
+										<div class="campos">
+											<input type="number" value="{{notas.asistencia}}" name="asistencia{{_id}}" class="txt_asistencia" data-id="{{_id}}">
+										</div>
+									</td>
+									
+									<td class="td_notas">
+										<div class="campos">
+											<input type="number" value="{{notas.evaluacionC}}" name="evaluacionC{{_id}}" class="txt_evaluacionC" data-id="{{_id}}">
+										</div>
+									</td>
+									<td class="td_notas">
+										<div class="campos">
+											<input type="number" value="{{notas.examenF_e}}" name="examenF_e{{_id}}" class="txt_escrito" data-id="{{_id}}">
+										</div>
+									</td>
+									<td class="td_notas">
+										<div class="campos">
+											<input type="number" value="{{notas.examenF_p}}" name="examenF_p{{_id}}" class="txt_practico" data-id="{{_id}}">
+										</div>
+									</td>
+									<td class="td_notas">
+										<div class="campos">
+											<input type="number" value="{{notas.total}}" name="total{{_id}}" class="txt_total" data-id="{{_id}}" disabled="">
+										</div>
+									</td>
+									<td class="td_notas">
+										<div class="campos">
+											<input type="number" value="{{notas.segundaInstancia}}" name="segundaI{{_id}}" class="txt_segundaI" data-id="{{_id}}">
+										</div>
+									</td>
+								</tr>
+								
+							{{/each}}
+						{{else}}
+						<p>Sin resultados</p>	
+			        	{{/each}}
+
+			        </tbody>
+				</table><br>
+				<div class="alert alert-info" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Atencion:</span>
+					No olvide Guardar las Notas antes de imprimir.
+				</div>
+				<button type="submit" class="btn btn_guardar">Guardar Notas</button>
+				<button type="submit" class="btn btn-default btn_imprimirNotas"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
+			    <a href="/" class="btn btn-danger">Cancelar</a>
+			   	<!--</form>	-->
+			</section> 
+       		</div>
+      	</div>
+    </div>
+</template>

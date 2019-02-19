@@ -1,0 +1,115 @@
+<template name="gestionGrupos">
+    <div class="card-panel opcionesGrupo">
+      <div class="row">
+        <div class="col l6 m6 s12 offset-l3 offset-m3 center">
+          <h3 class="text-info">Carreras para las que puede Registrar Grupos.</h3><hr>
+          <h4>Selecciona Gestión</h4>
+            <div class="row">
+                <div class="input-field">
+                  <select class="browser-default" required id="sel_gestionG">
+                    <option value="" disabled selected>--Gestiones--</option>
+                    {{#each gestiones}}
+                    <option value="{{_id}}">{{gestion}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+            </div>
+            {{#each carreras}}
+              <button class="btn waves-effect waves-light btn-primary btn-lg btn-block btn_gestionGrupos" >{{nombreCarrera}}</button>
+            {{else}}
+              <h4 class="center">No existen carreras creadas.</h4>
+            {{/each}}
+        </div>
+      </div>    
+    </div>
+
+          <div class="card-panel col l12 m12 s12 contenidoGrupo" style="padding:20px">
+            <h4 class="center text-info">
+              Registro de Grupos {{carreraElegida}}
+            <a href="" class="secondary-content blue-text" id="btn_volverAcarrerasGrupo">
+                  <span class="glyphicon glyphicon-arrow-left"></span> Volver
+                </a>
+            </h4><hr>
+            <form class="form" id="formRegistrarGrupo">
+              <fieldset>
+                  <div class="row">
+                    <h4>Seleccione Turno</h4>
+                    <div class="input-field col l12 m12 s12">
+                        <select class="browser-default" id="sel_turno" required>
+                          <option value="" disabled selected>--Turnos--</option>
+                          <option value="MAÑANA">MAÑANA</option>
+                          <option value="TARDE">TARDE</option>
+                          <option value="NOCHE">NOCHE</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                      <i class="material-icons prefix">assignment</i>
+                      <input name='txt_nombreGrupo' type="text" class="validate" required max="15">
+                      <label for="txt_nombreGrupo">Nombre de Grupo</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                      <i class="material-icons prefix">access_time</i>
+    
+                      <input name="txt_horaInicio" type="text" class="timepicker txt_inicio" placeholder="Hora inicio">
+                    </div>
+                
+                    <div class="input-field col l6 m6 s12">
+                      <i class="material-icons prefix">access_time</i>
+        
+                      <input name="txt_horaFin" type="text" class="timepicker txt_fin" placeholder="Hora fin">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col l6 m6 s12 center">
+                      <button type="submit" class="btn waves-effect waves-light btn-primary btn-lg btn-block" >Crear Grupo</button>
+                    </div>
+                    <div class="col l6 m6 s12 center">
+                      <button type="reset" class="btn waves-effect waves-light btn-lg btn-block red darken-3" id="btn_cancelCarrera" >Cancelar</button>
+                    </div>
+                </div>
+                </fieldset>
+            </form>
+              <h4 class="text-info center">Grupos Creados Carrera {{carreraElegida}}</h4>
+            <table class="bordered responsive-table ">
+              <caption>Lista de Grupos creados</caption>
+              <!--<colgroup><col style="red"></colgroup> para agarrar toda una colomna-->
+              <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Grupo</th>
+                    <th>Turno</th>
+                    <th>De</th>
+                    <th>Hasta</th>
+                    <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{#each grupos}}  
+                <tr>
+                  <td></td>
+                  <td>{{nombreGrupo}}</td>
+                  <td>{{turno}}</td>
+                  <td>{{horaInicio}}</td>
+                  <td>{{horaFin}}</td>
+                  <td>
+                    <a href="#!" class="btn_editarGrupo" data-toggle="modal" data-target="#modalEditarGrupo">
+                        <i class="material-icons">mode_edit</i>
+                      </a>
+                      <a href="#!" class="red-text" id="btn_borrarGrupo">
+                        <i class="material-icons">delete_forever</i>
+                      </a>
+                  </td>
+                </tr>
+              {{else}}
+                <p>No existe grupos</p>
+              {{/each}}
+              </tbody>
+          </table>	
+		  </div>
+{{>modalEditarGrupo}}			
+</template>

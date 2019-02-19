@@ -1,0 +1,156 @@
+<template name="perfilEstudiante">
+
+   {{#if currentUser}}
+    {{#if isInRole 'estudiante' 'admin'}}
+                <div class="col l12 s12">
+                    <div class="cardPerfil hovercard">
+                         <div class="card-background">
+                        {{#if avatar}}
+                            <img alt="" class="card-bkimg" src="{{currentUser.profile.avatar}}"/>
+                                <!-- http://lorempixel.com/850/280/people/9/ -->
+                        {{else}} 
+                            <img alt="" src="img/default_avatar.png"/>
+                         {{/if}}   
+                        </div>
+                        <div class="useravatar">
+                        {{#if avatar}}
+                             <img alt="" src="{{currentUser.profile.avatar}}"/>
+                        {{else}}
+                            <img alt="" src="img/default_avatar.png"/>
+                        {{/if}}
+                        </div>
+                        <div class="card-info">
+                            <span class="card-title">
+                               {{apellidoP}} {{apellidoM}} {{nombres}}
+                            </span>
+                        </div>
+                    </div>
+                        <div aria-label="..." class="btn-pref btn-group btn-group-justified btn-group-lg" role="group">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-primary" data-toggle="tab" href="#tab1" id="stars" type="button">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-user">
+                                    </span>
+                                    Perfil
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-default" data-toggle="tab" href="#tab2" id="favorites" type="button">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-duplicate">
+                                    </span>
+                                   Ver Modulos
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-default" data-toggle="tab" href="#tab3" id="following" type="button">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-user">
+                                    </span>
+                                    Notas
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                    <button class="btn btn-default" data-toggle="tab" href="#tab4" id="following" type="button">
+                                        <span aria-hidden="true" class="glyphicon glyphicon-user">
+                                        </span>
+                                        Kardex
+                                    </button>
+                            </div>
+                        </div>
+                        <div class="well">
+                            <div class="tab-content">
+                                    <!--.contenidos -->
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                        	<div class="row">
+                                        		<div class="col l12 m12 s12 blue grey darken-2" >
+                                                    <h4 class="center white-text">Datos personales</h4><hr>
+                                                    <ul class="collection">
+                                                        <li class="collection-item valign-wrapper">
+                                                            <i class="material-icons">ac_unit</i>
+                                                            <strong class="text-info">
+                                                            CI: 
+                                                            </strong>
+                                                            {{ci}}
+                                                        </li>
+                                                        <li class="collection-item valign-wrapper">
+                                                            <i class="material-icons">people</i>
+                                                            <strong class="text-info">
+                                                            APELLIDO PATERNO: 
+                                                            </strong>
+                                                            {{apellidoP}} 
+                                                        </li>
+                                                        <li class="collection-item valign-wrapper">
+                                                            <i class="material-icons">people</i>
+                                                            <strong class="text-info">
+                                                             APELLIDO MATERNO:
+                                                            </strong>
+                                                            {{apellidoM}}  
+                                                        </li>
+                                                        <li class="collection-item valign-wrapper">
+                                                            <i class="material-icons">perm_identity</i>
+                                                            <strong class="text-info">
+                                                            NOMBRES: 
+                                                            </strong>
+                                                            {{nombres}} 
+                                                        </li>
+                                                        <li class="collection-item valign-wrapper">
+                                                            <i class="material-icons">email</i>
+                                                            <strong class="text-info">
+                                                            EMAIL:
+                                                            </strong>
+                                                            {{correo}} 
+                                                        </li>
+                                                        <li class="collection-item">
+                                                            <i class="material-icons">edit</i>
+                                                            <details>
+                                                                <summary>Editar Datos</summary>
+                                                                    <div class="file-field input-field">
+                                                                        <div class="btn">
+                                                                            <span>
+                                                                                Subir Foto de perfil
+                                                                            </span>
+                                                                            <input id="txt_file" type="file"/>
+                                                                        </div>
+                                                                        <div class="file-path-wrapper">
+                                                                            <input class="file-path validate" type="text"/>
+                                                                       </div>
+                                                                    </div>
+                                                            </details> 
+                                                        </li>
+                                                    </ul>
+                                        			
+                                        		</div>
+                                        		
+                                        	</div> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade in" id="tab2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            {{>verModulos}}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade in" id="tab3">
+                                   {{>calificaciones}}
+                                </div>
+
+                                <div class="tab-pane fade in" id="tab4">
+                                    {{#each carrerasUserKar}}
+                                            <button class="btn waves-effect waves-light btn-danger btn-lg btn-block btn_printKardex" value="{{carrerasKar._id}}">{{carrerasKar.nombreCarrera}} <span class="glyphicon glyphicon-save"></span></button>
+                                    {{/each}}
+                                </div>
+                                
+                            </div>
+                        </div>
+            </div>    <!--para avatar file-->
+
+    {{else}}
+    <strong>Acceso denegado</strong>
+    {{/if}}
+   
+{{/if}}
+</template>

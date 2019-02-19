@@ -1,0 +1,74 @@
+<template name="modalEditarDesignacion">
+	<!-- Modal -->
+<div class="modal fade mymodal" id="modalEditarDesignacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+	        <h3 class="modal-title" id="exampleModalLongTitle">Editar Designación</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+      	</div>
+
+      		<div class="modal-body">
+            <h4>Selecciona Carrera</h4>
+                  <div class="row">
+                      <div class="input-field">
+                        <select class="browser-default" required id="sel_carreraEditDesig">
+                          <option value="" disabled selected>--Carreras--</option>
+                          {{#each carrerasEdit}}
+                          <option value="{{_id}}">{{nombreCarrera}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                  </div>
+            <h4>Seleciona los modulos a asignar al Docente</h4>
+                  <div class="row">
+                    <table class="t_modulosEdit">
+                      
+                      <thead>
+                        <tr>
+                          <th>N°</th>
+                          <th>Modulo</th>
+                          <th>Materia</th>
+                          <th>Grupos</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each modulosEdit}}
+                        <tr class="{{_id}}">
+                          <td></td>
+                          <td>
+                            <input type="checkbox" name="chek_moduloEdit" id="edit{{_id}}" value="{{_id}}" />
+                            <label for="edit{{_id}}">{{nombreModulo}}</label>
+                          </td>
+                          <td>
+                            <span>{{nombreMateria}}</span>
+                          </td>
+                          <td>
+                            <div class="input-field">
+                                <select class="browser-default sel_grupoEdit" name="sel_grupoEdit">
+                                  <option value="" disabled selected>Seleccione Grupo</option>
+                                  {{#each gruposEdit}}
+                                    <option value="{{_id}}" data-turno="{{turno}}">{{nombreGrupo}} - {{turno}} /  {{horaInicio}} - {{horaFin}}
+                                    </option>
+                                  {{/each}}
+                                </select>
+                            </div>
+                          </td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+          </div>
+            
+	      	<div class="modal-footer">
+                <button type="button" class="btn btn-primary btn_actualizarDesig" >Guardar cambios</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	     	</div>
+
+    </div>
+  </div>
+</div>
+</template>

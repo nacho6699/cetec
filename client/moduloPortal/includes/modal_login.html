@@ -1,0 +1,40 @@
+<template name="modal_login">
+<div class="modal fade" id="mlogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="background: transparent; border:0px; box-shadow: 0 0 0;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h2>
+      </div>
+      <div class="modal-body">
+        <form id="form_login">
+          <div class="row">
+            <div class="input-field col l6 s12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="txt_usuario" type="text" class="validate" name="usuario">
+              <label for="icon_prefix">Usuario (C.I. o Correo)</label>
+           </div>
+            <div class="input-field col l6 s12">
+              <i class="material-icons prefix">fingerprint</i>
+              <input id="txt_password" type="password" class="validate" name="password">
+              <label for="icon_prefix">Contraceña</label>
+           </div>
+         </div>
+          <div class="row center">
+           <button type="submit" class="btn btn-primary center" id="btn_entrar">Entrar</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+          <a href="/re-password" id="re-password">¿Olvidaste tu contraceña?</a>
+          <div class="row" id="loading">
+            {{>load}}
+          </div>
+          <div class="row right">
+            Sino esta registrado registrese aqui > 
+            <a href="/admisiones/nuevoEstudiante">Registrarse</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</template>

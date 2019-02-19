@@ -1,0 +1,30 @@
+<template name="copias">
+    <div class="card-panel">
+      <h4 class="text-info center">Copias de Seguridad</h4>
+        <div class=" alert alert-danger ">
+           <strong>Advertencia!!! </strong> Al Restaurar una copia perdera los datos actuales.
+        </div>
+      {{> appDumpUI advanced=true}}
+
+      
+    </div>
+    <script>
+        $(function(){
+            
+           // $('span.btn-file').text('Restaura Copia');
+           //$('span:contains("Restore Backup")').text('Restaurar Copia');
+            $('label:contains("Drop Existing Data?")').text('¿Restaurar Copia?');
+
+            $('a.app-dump-download').text('Descargar Copia de seguridad');
+            $('label:contains("Filename ")').text('Nombre de archivo .tar');
+            $('label:contains("Collections")').text('Colecciones, para copias parciales >> escriba el nombre de la colección');
+            $('label:contains("Query")').text('Consultas MongoDB');
+            $('label:contains("Parser")').text('Tipo de copia');
+            var fechabackup=new Date();
+            fechaGod=moment(fechabackup).format('YYYY-MM-DD');
+            $('input:text[name=filename]').val('Copia_'+fechaGod);
+            
+            //$('.text-muted').text(' ');
+        })
+    </script>
+</template>

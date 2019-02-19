@@ -1,0 +1,69 @@
+<template name="comentarios">
+    {{#if currentUser}}
+    <div class="row">
+        <form class="col s12 form_comentar">
+            <div class="row">
+                <div class="input-field col s10">
+                    <i class="material-icons prefix">
+                        mode_edit
+                    </i>
+                    <textarea id="textarea2" class="materialize-textarea" data-length="120" name="txt_comentar" style="font-size: 1em"></textarea>
+                    <label for="textarea2">Comentar</label>
+                </div>
+                <div class="col s2">
+                    <button class="btn btn_comentar" type="submit">
+                        <i class="material-icons">
+                            send
+                        </i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {{/if}}
+    
+    <div class="row">
+        <div class="col s12">
+            <ul class="collapsible popout" data-collapsible="accordion">
+                {{#each comentarios}}
+                <li>
+                    <div class="collapsible-header">
+                        {{#each usuarios}}
+                        
+                            {{#if profile.avatar}}
+                                <img class="avatar img-thumbnail" src="{{profile.avatar}}" height="40" width="40">
+                            {{else}}    
+                                <img class="avatar img-thumbnail" src="img/default_avatar.png" height="40" width="40">
+                            {{/if}}
+                            <span class="indigo-text" style="text-transform: capitalize;font-weight:bold;font-style:italic;">
+                                {{profile.nombres}} {{profile.apellidoP}} {{profile.apellidoM}}
+                            </span>
+                            
+                        {{/each}}
+                        <small>{{fechaComentario}}</small>                 <!--para borrar coments-->
+                        {{#if currentUser}}
+                            {{#if isInRole 'administrador, adm_academico' 'admin'}}   
+                                <a class="right" href="#" id="btn_borrarComents">
+                                    <i class="material-icons " style="font-size: 30px; color:red">
+                                    delete_forever
+                                    </i>
+                                </a>
+                            {{/if}}
+                        {{/if}} 
+                    </div>  
+                    <div class="collapsible-body">
+                        <span>
+                            <pre>{{texto}}</pre>
+                        </span>
+                    </div>
+                </li>
+                
+                {{/each}}
+            </ul>
+
+        </div>
+
+    </div>
+    
+    
+</template>

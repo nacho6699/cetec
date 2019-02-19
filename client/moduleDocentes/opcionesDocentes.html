@@ -1,0 +1,59 @@
+<template name="opcionesDocentes">
+{{#if currentUser}}
+    {{#if isInRole 'docente, administrador' 'admin'}}
+
+    <div class="row"> 
+        <div class="wrapper">
+            <!-- side nav/ menu lateral --> 
+            <div class="side-bar">
+                <ul class="menu_docentes">
+                    <div class="menu">
+                        <li>
+                            <a href="#" class="activeDoc btn_perfil">Perfil <span class="glyphicon glyphicon-user pull-right"></span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn_notas">Notas<span class="glyphicon glyphicon-list-alt pull-right"></span></a>
+                        </li>
+                        <li>
+                            <a href="#">Información<span class="glyphicon glyphicon-star pull-right"></span></a>
+                        </li>
+                        <li>
+                            <a href="#">Ayuda <span class="glyphicon glyphicon-cog pull-right"></span></a>
+                        </li>
+                    </div>
+                    
+                </ul>
+            </div>  
+            <!-- fin menu sidenav -->
+            <!-- contenido aux side nav -->
+                
+        <div class="content">
+            <div class="col s12">
+                {{> Template.dynamic template=templateOpcionesDocentes}}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+    var menuDocentes = $(".menu_docentes li a"); 
+      menuDocentes.click(function() {
+         menuDocentes.removeClass("activeDoc");
+         $(this).addClass("activeDoc");
+      });     
+});
+</script>    
+
+    {{else}}
+        aceso denegado no es un docente
+    {{/if}}
+{{else}} 
+    {{#if loggingIn}}
+        Cargandoooooooo
+    {{else}}
+      {{> presentacion}}
+    {{/if}}
+   
+{{/if}}
+
+</template>

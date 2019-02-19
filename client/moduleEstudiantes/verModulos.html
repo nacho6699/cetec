@@ -1,0 +1,62 @@
+<template name="verModulos">
+<div id="contenedorCarreras">
+	<div class="alert alert-danger" role="alert">
+		Debe seleccionar una carrera para poder ver los modulos matriculados.
+	</div>
+	{{#each carrerasUser}}
+		<button class="btn waves-effect waves-light btn-primary btn-lg btn-block btn_carreraNotas" >{{carreras.nombreCarrera}}</button>
+	{{/each}}
+</div>
+
+<div id="contenedorModulos">
+	<h4>
+		<strong class="text-info">{{carreraElegida.nombreCarrera}}</strong>
+		Modulos Programados
+		<a href="" class="secondary-content blue-text btn_volver">
+			<span class="glyphicon glyphicon-arrow-left"></span> Volver
+		</a>
+	</h4><hr>	
+  <table class="table striped">
+	  <thead>
+		  <tr>
+			    <th>N°</th>
+			    <th>Modulo</th>
+			     <th>Materia</th>
+			     <th>Sigla</th>
+			     <th>Inicia</th>
+			     <th>Finaliza</th>
+			     <th>Grupo</th>
+			     <th>Turno</th>
+			     <th>Docente</th>
+			 </tr>
+		 </thead>
+
+		<tbody>
+		{{#each matricula}} 
+			
+			<tr>
+			{{#each modulos}}	 
+					<td></td>
+				    <td>{{nombreModulo}}</td>
+				    <td>{{nombreMateria}}</td>
+					<td>{{sigla}}</td>
+					<td>{{formatDate(fechaInicio)}}</td>
+					<td>{{formatDate(fechaFin)}}</td>
+			{{/each}}		 
+				    <td>{{grupo.nombreGrupo}}</td>
+					<td>{{grupo.turno}}</td>
+				{{#each designaciones}}
+					<td>{{docentes.profile.apellidoP}} {{docentes.profile.apellidoM}} {{docentes.profile.nombres}}</td>
+				{{else}}
+					<td>Por designar</td>
+				{{/each}}
+			</tr>
+			      
+			
+		{{else}}
+				<tr><td>No tiene módulos programados</td></tr>
+		{{/each}}
+		</tbody>
+	</table>
+</div>	
+</template>

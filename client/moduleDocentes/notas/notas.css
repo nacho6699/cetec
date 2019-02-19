@@ -1,0 +1,49 @@
+.btn_seleccionar{
+	cursor: pointer;
+}
+/*para mi enumeracion de tablas*/
+table { counter-reset: rowNumber; } table tr > td:first-child { counter-increment: rowNumber; } table tr td:first-child::before { content: counter(rowNumber); min-width: 1em; margin-right: 0.5em; }
+
+
+.t_calificar tbody tr .td_notas{
+	padding-right: 10px;
+	padding-left: 10px !important;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	border:1px solid #82b1ff;
+}
+.t_calificar thead tr th{
+	text-align:center;
+	vertical-align: middle;
+	padding: 2px;
+	font-size: 0.8em;
+}
+.th_nombres{
+	min-width: 200px;
+}
+.campos{
+	width: 40px;
+}
+.t_calificar{
+	padding: 10px;
+}
+
+
+
+::-webkit-scrollbar{
+	width: 10px;
+	  height: 10px;
+	  cursor: pointer;	
+  }
+  ::-webkit-scrollbar-track {
+	  -webkit-box-shadow: inset 0 0 6px 2px rgba(0,0,0,0.3);
+	  background: #ffffff;
+  }
+  ::-webkit-scrollbar-thumb {
+	  background: #2d1eb7; 
+	  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+	  cursor: pointer;
+  }
+  ::selection{
+	  background: mintcream; 
+  }

@@ -1,0 +1,72 @@
+.btn-nav {
+    background-color: #263238;
+    border: 1px solid #e0e1db;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;  
+    height: 6em;      /* Opera/IE 8+ */
+}
+.btn-nav:hover {
+    color: #263238;
+    cursor: pointer;
+    -webkit-transition: color 1s; /* For Safari 3.1 to 6.0 */
+    transition: color 1s;
+    background: #fff;
+}
+.btn-nav.active {
+    color: #18ffff;
+    padding: 2px;
+	border-top: 6px solid #fff;
+	border-bottom: 4px solid #fff;
+    border-left: 0;
+    border-right: 0;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    background: #000;
+}
+.btn-nav.active:before {
+
+	position: absolute;
+	border-style: solid;
+	border-width: 6px 6px 0;
+	border-color: #fff transparent;
+
+	width: 0;
+	z-index: 1;
+	margin-left: -6px;
+	top: 0;
+	left: 50%;
+}
+.btn-nav .glyphicon {
+    padding-top: 8px;
+	font-size: 30px;
+}
+.btn-nav.active p {
+    margin-bottom: 8px;
+}
+@-webkit-keyframes pulsate {
+ 50% { color: #000; }
+}
+@keyframes pulsate {
+ 50% { color: #000; }
+}
+@media (max-width: 480px) {
+    .cajas {
+        display: block !important;
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+@media (max-width: 600px) {
+    .btn-nav .glyphicon {
+        padding-top: 12px;
+        font-size: 20px;
+    }
+}
+.cajas {
+    display: block !important;
+    float: none !important;
+    width: 100% !important;
+}

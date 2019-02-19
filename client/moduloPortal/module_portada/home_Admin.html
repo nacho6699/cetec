@@ -1,0 +1,48 @@
+<template name="home_admin">
+	<div class="col l6 s12 " id="content_izquierda">
+		<div class="card-panel ">
+			<h3>Opciones de Administrador</h3>
+			<hr>
+			<div class="panel panel-info">
+				<div class="panel-heading">Información</div>
+				<div class="panel-body">
+					<ol>
+						<li>Elige una de las opciones del menu de administrador.</li>
+						<li>Realiza publicaciones en el panel de la derecha.</li>
+						<li>Puede borrar publicaciones y comentarios si cuenta con los permisos.</li>
+					</ol>
+				</div>
+			</div>
+			{{#if currentUser}}
+			 {{#if isInRole 'administrador,adm_academico' 'admin'}}
+			<div class="row">
+				<a href="/admAcademica" class="waves-effect waves-light btn-large btn-block grey darken-3 btn_menu">
+					<i class="material-icons left large">account_balance</i>Administracion Académica</a>
+			</div>
+			{{/if}}
+			 {{/if}}
+
+			{{#if currentUser}}
+			 {{#if isInRole 'administrador' 'admin'}}
+			<div class="row">
+				<a href="/admAdministradores" class="waves-effect waves-light btn-large btn-block grey darken-3 btn_menu">
+					<i class="material-icons left large">people_outline</i>Administrar Personal Administrativo</a>
+			</div>
+			{{/if}}
+			 {{/if}}
+			<div class="row">
+				<a href="/admDocentes" class="waves-effect waves-light btn-large btn-block grey darken-3 btn_menu">
+					<i class="material-icons left large">persona</i>Administrar Docentes</a>
+			</div>
+			<div class="row">
+				<a href="/admEstudiantes" class="waves-effect waves-light btn-large btn-block grey darken-3 btn_menu">
+					<i class="material-icons left large">people_outline</i>Administrar Estudiantes</a>
+			</div>
+		</div>
+
+
+		<!--extraaaaaa-->
+
+	</div>
+
+</template>

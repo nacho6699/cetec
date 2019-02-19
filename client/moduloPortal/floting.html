@@ -1,0 +1,18 @@
+<template name="floting">
+<div class="fixed-action-btn vertical click-to-toggle">
+    <a class="btn-floating btn-large red">
+      <i class="material-icons" id="btn_icon">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red sms " data-toggle="tooltip" data-placement="left" title="Docentes" href="/docentes"><i class="medium material-icons">people</i></a></li>
+      <li><a href="/perfilEstudiante" class="btn-floating yellow darken-1 sms" data-toggle="tooltip" data-placement="left" title="Estudiantes"><i class="material-icons">person</i></a></li>
+      <li><a href="/admisiones" class="btn-floating green sms" data-toggle="tooltip" data-placement="left" title="Inscripciones"><i class="material-icons">person_add</i></a></li>
+      <li><a href="/" class="btn-floating blue sms" data-toggle="tooltip" data-placement="left" title="Inicio"><i class="material-icons">home</i></a></li>
+    </ul>
+</div>
+<script>
+	$(function(){
+		$('.sms').tooltip();
+	})
+</script>
+</template>

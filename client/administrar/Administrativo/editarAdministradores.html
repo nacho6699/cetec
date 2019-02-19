@@ -1,0 +1,80 @@
+<template name="editarAdministradores">
+{{#if currentUser}}
+    {{#if isInRole 'administrador' 'admin'}}	
+	<form class="form" id="formBuscarEstudiente">
+		<fieldset>
+			<div class="alert alert-info" role="alert">
+				  Recuerde que solo puede buscar personal adminitrativo.
+				</div>
+			<legend>Buscar personal administrativo.</legend>
+	        <div class="row">
+	        	
+	          <div class="input-field col s12">
+	            <i class="material-icons prefix">assignment</i>
+	            <input name='txt_ci' type="text" class="validate" id="txt_ci" autocomplete="off" required>
+	            <label for="txt_gestion">Cedula de Identidad</label>
+	          </div>
+	        </div>
+        </fieldset>
+    </form>
+
+    <table class="bordered responsive-table">
+	        	<caption>Lista de Personal Administrativo</caption>
+	        	<!--<colgroup><col style="red"></colgroup> para agarrar toda una colomna-->
+		        <thead>
+		          <tr>
+		          	  <th>N°</th>
+		          	  <th>CI</th>
+		              <th>Apellido Paterno</th>
+		              <th>Apellido Materno</th>
+		              <th>Nombres</th>
+		              <th>Correo</th>
+		              <th>Telf.</th>
+		              <th>Permiso</th>
+		              <th>Opcion</th>
+		          </tr>
+		        </thead>
+				
+		        <tbody>
+		        {{#each administradores}}
+		          <tr>
+		          	<td></td>
+		          	<td>{{username}}</td>
+		            <td>{{profile.apellidoP}}</td>
+		            <td>{{profile.apellidoM}}</td>
+		            <td>{{profile.nombres}}</td>
+		            <td>{{emails.[0].address}}</td>
+		            <td>{{profile.telefono}}</td>
+		            <td>
+		            	<a href="#!" class="btn_editarRol" data-toggle="modal" data-target="#modalEditarRol">{{roles.admin}}
+							<i class="material-icons">edit</i>
+		            	</a>
+		            </td>
+		            <td>
+		            	<a href="#!" class="valign-wrapper btn_editarAdmin" data-toggle="modal" data-target="#modalEditarAdministradores">
+	        				<i class="material-icons">edit</i>Editar
+	        			</a>
+	        			<a href="#!" class="valign-wrapper red-text btn_eliminar">
+	        				<i class="material-icons">delete_forever</i>Eliminar
+	        			</a>
+		            </td>
+		          </tr>
+		        
+		        {{else}}
+		          <tr>
+		            <td colspan="4">Aun no hiciste la busqueda o el usuario no esta registrado.	</td>
+		          </tr>
+		        {{/each}}
+		        </tbody>
+	</table>
+{{> modalEditarAdministradores}}
+{{> modalEditarRol}}
+    {{else}}
+		<strong>Acceso denegado</strong>
+    {{/if}}
+ {{else}}   
+    {{#if loggingIn}}
+            Cargando...     
+    {{/if}}
+{{/if}}	
+</template>

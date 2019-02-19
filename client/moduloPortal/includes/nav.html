@@ -1,0 +1,117 @@
+<template name="nav">
+	<nav class="nav-fixed">
+    	<div class="nav-wrapper">
+	      <a href="/" class="brand-logo hide-on-small-only" >
+	      	<img src="/img/logo1.png" alt="" height="48px" width="120px">
+	      </a>
+	      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+	      <ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li class="activo"><a href="/"><i class="material-icons left">home</i>Inicio</a></li>
+	        <!--<li><a href="#"><i class="material-icons left">book</i>Carreras</a></li>-->
+	        <li><a href="/nosotros"><i class="material-icons left">location_on</i>Nosotros</a></li>
+	        {{#if currentUser}}
+	        <li>
+	        	 <div class="chip">
+			        {{#if currentUser.profile.avatar}}
+			       
+				        <img class="avatar" src="{{currentUser.profile.avatar}}" height="50" width="50">
+				    {{else}}    
+						<img class="avatar" src="/img/default_avatar.png" height="40" width="40">
+				    {{/if}}
+				    <strong>
+						{{currentUser.profile.nombres}}
+						{{currentUser.profile.apellidoP}}
+						{{currentUser.profile.apellidoM}}
+					</strong>	
+				</div>
+			</li>
+			<li>
+				<a href="#" id="logout" data-toggle="modal" data-target="#exampleModalCenter">
+					<i class="material-icons left">exit_to_app</i>Salir
+				</a>
+			</li>	
+	        {{else}}
+		        {{#if loggingIn}}
+			        Cargando... 	
+			    {{else}}
+			    
+		        <button type="button" class="btn iniciarCesion" data-toggle="modal" data-target="#mlogin" data-whatever="@mdo" ><span class="glyphicon glyphicon-user" aria-hidden="true"
+		        ></span> Iniciar sesión</button>
+		        <!--<li><a href="#" id="login">Entrar{{> loginButtons}}</a></li>-->
+		        {{/if}}
+	        {{/if}}
+	        
+	      </ul>
+	     
+	    </div>
+
+	</nav>
+	<!-- menu lateral -->
+	  <ul class="side-nav " id="mobile-demo">
+				{{#if currentUser}}
+				<li>
+					<div class="user-view">
+						<div class="background">
+							<img src="img/b1.png" width="497px">
+						</div>
+						{{#if currentUser.profile.avatar}}
+							<a href="#user"><img class="circle" src="{{currentUser.profile.avatar}}"></a>
+							<a>
+								<span class="white-text name">
+										{{currentUser.profile.nombres}}
+										{{currentUser.profile.apellidoP}}
+										{{currentUser.profile.apellidoM}}
+								</span>
+							</a>
+							<a href="/" id="logout"><span class="white-text email">Cerrar sesión</span></a>
+						
+						{{else}} 
+							<a href="#user"><img class="circle" src="img/default_avatar.png"></a> 
+							<a>
+									<span class="white-text name">
+											{{currentUser.profile.nombres}}
+											{{currentUser.profile.apellidoP}}
+											{{currentUser.profile.apellidoM}}
+									</span>
+							</a> 
+							<a href="/" id="logout"><span class="white-text email">Cerrar sesión</span></a> 
+						{{/if}}
+					</div>
+				</li>
+	
+				{{else}}
+	        {{#if loggingIn}}
+		        Cargandoooooooo
+		   		{{else}}
+	        	<li class="center">
+					<img class="circle" src="img/favicon.jpg" width="200px" height="300px">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mlogin" data-whatever="@mdo"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Iniciar cesión</button>
+				</li>
+				<li><a href="/nosotros"><i class="material-icons left">location_on</i>Nosotros</a></li>
+				<li><a href="/docentes"><i class="material-icons left">people</i>Docentes</a></li>
+				<li><a href="/estudiantes"><i class="material-icons left">people</i>Estudiantes</a></li>
+	        {{/if}}
+				{{/if}}
+
+		<!--fin menu lateral-->			
+					{{#if currentUser}}
+   				 	{{#if isInRole 'docente, administrador' 'admin'}}
+	        	<li><a href="/docentes" class="btn_perfil">Perfil</a></li>
+	        	<li><a href="#" class="btn_notas">Notas</a></li>
+						<li><a href="#">Ayuda</a></li>
+						{{/if}}
+					{{/if}}
+	  </ul>
+{{> modal_login}}
+{{> modal_loading}}
+ <script>
+	$(function() {
+	  var menues = $("#nav-mobile li"); 
+	  menues.click(function() {
+	     menues.removeClass("activo");
+	     $(this).addClass("activo");
+	  });
+
+	});
+</script>
+</template>

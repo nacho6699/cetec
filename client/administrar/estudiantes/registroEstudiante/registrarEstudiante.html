@@ -1,0 +1,184 @@
+<template name='registrarEstudiante'>
+   
+        <div class="col l12 s12">
+          <div class="card white">
+            <div class="card-content black-text">
+                
+               <form class="form" id="formRegistrarEst">
+                <fieldset>
+                  <legend class="text-info">Formulario de Pre-inscripción</legend>
+                  <h4>Carrera</h4>
+                  <div class="row">
+                    <div class="input-field">
+                      <select class="browser-default" required id="sel_carrera">
+                        <option value="" disabled selected>Seleccione Carrera</option>
+                        {{#each carreras}}
+                        <option value="{{_id}}">{{nombreCarrera}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h4>Información Estudiante</h4>
+                      <div class="input-field col l3 s12">
+                        <i class="material-icons prefix">perm_identity</i>
+                        <input name='txt_ci' id="txt_ci" type="number" class="validate" required minlength="7" maxlength="10">
+                        <label for="nombres">Cedula de Identidad</label>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <i class="material-icons prefix">people</i>
+                        <input name='txt_Ap' id="txt_Ap" type="text" class="validate"  minlength="3" maxlength="30"  pattern="[a-zA-Z]*">
+                        <label for="apellidoP">Apellido Paterno</label>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <i class="material-icons prefix">people</i>
+                        <input name='txt_Am' id="txt_Am" type="text" class="validate"  minlength="3" maxlength="30"  pattern="[a-zA-Z]*">
+                        <label for="apellidoM">Apellido Materno</label>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input name='txt_nombres' id="txt_nombres" type="text" class="validate" required minlength="3" maxlength="30" pattern="[a-z A-Z]*">
+                        <label for="nombres">Nombres</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col l3 s12">
+                        Fecha Nacimiento
+                        <i class="material-icons prefix">date_range</i>
+                        <input name='txt_fechaNacimiento' id="txt_fecha" type="date" min="1900-04-01" max="2017-04-20" value="1990-01-05" required>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <select class="browser-default" id="sel_departamento" required>
+                          <option value="" disabled selected>Departamento de Nacimiento</option>
+                          <option value="POTOSÍ">POTOSÍ</option>
+                          <option value="LA PAZ">LA PAZ</option>
+                          <option value="3">ORURO</option>
+                          <option value="4">SUCRE</option>
+                          <option value="5">BENI</option>
+                          <option value="6">PANDO</option>
+                          <option value="7">COBIJA</option>
+                          <option value="8">TARIJA</option>
+                          <option value="9">COCHABAMBA</option>
+                          <option value="10">OTRO</option>
+                        </select>
+                      </div>
+                      <div class="col l3 s12 center">
+                          <input name="sexo" type="radio" value="Hombre" id="test1" checked />
+                          <label for="test1">Hombre</label>
+
+                          <input name="sexo" type="radio" id="test2" value="Mujer" />
+                          <label for="test2">Mujer</label>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <select class="browser-default" id="sel_estado" required>
+                          <option value="" disabled selected>Estado Civil</option>
+                          <option value="Soltero(a)">Soltero(a)</option>
+                          <option value="Casado(a)">Casado(a)</option>
+                          <option value="Divorciado(a)">Divorciado(a)</option>
+                          <option value="Cuncubino(a)">Cuncubino(a)</option>
+                          <option value="Viudo(a)">Viudo(a)</option>
+                        </select>
+                      </div>
+                    </div>
+                   <div class="row">
+                     <div class="input-field col l3 s12">
+                          <i class="material-icons prefix">streetview</i>
+                          <input name='txt_direccion' id="txt_direccion" type="text" class="validate" required>
+                          <label for="txt_direccion">Dirección actual</label>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <i class="material-icons prefix">email</i>
+                        <input name="txt_email" id="txt_email" type="email" class="validate" required>
+                        <label for="email">Email</label>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <i class="material-icons prefix">contact_phone</i>
+                        <input name='txt_telefono' id="txt_telefono" type="text" class="validate" pattern="^(0|[1-9][0-9]*)$">
+                        <label for="txt_telefono">Telefono</label>
+                      </div>
+                      <div class="input-field col l3 s12">
+                        <i class="material-icons prefix">contact_phone</i>
+                        <input name='txt_celular' id="txt_celular" type="text" class="validate" pattern="^(0|[1-9][0-9]*)$">
+                        <label for="txt_celular">Celular</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <h4>Información de Apoderado</h4><hr>
+                    <div class="input-field col l4 s12">
+                        <i class="material-icons prefix">people</i>
+                        <input name='txt_ap_apoderado' id="txt_ap_apoderado" type="text" class="validate" minlength="3" maxlength="30" pattern="[a-zA-Z]*">
+                        <label for="apellidoP">Apellido Paterno del Apoderado</label>
+                      </div>
+                      <div class="input-field col l4 s12">
+                        <i class="material-icons prefix">people</i>
+                        <input name='txt_am_apoderado' id="txt_am_apoderado" type="text" class="validate" minlength="3" maxlength="30" pattern="[a-zA-Z]*">
+                        <label for="apellidoM">Apellido Materno del Apoderado</label>
+                      </div>
+                      <div class="input-field col l4 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input name='txt_nom_apoderado' id="txt_nom_apoderado" type="text" class="validate" minlength="3" maxlength="30" pattern="[a-zA-Z]*">
+                        <label for="nombres">Nombres del Apoderado</label>
+                      </div>
+                  </div>
+                   <div class="row">
+                     <div class="input-field col l4 s12">
+                          <i class="material-icons prefix">streetview</i>
+                          <input name='txt_dir_apoderado' id="txt_dir_apoderado" type="text" class="validate">
+                          <label for="txt_dir_apoderado">Dirección actual</label>
+                      </div>
+                      <div class="input-field col l4 s12">
+                        <i class="material-icons prefix">contact_phone</i>
+                        <input name='txt_fono_apoderado' id="" type="text" class="validate" pattern="^(0|[1-9][0-9]*)$">
+                        <label for="txt_fono_apoderado">Telefono</label>
+                      </div>
+                      <div class="input-field col l4 s12">
+                        <i class="material-icons prefix">contact_phone</i>
+                        <input name='txt_cel_apoderado' id="" type="text" class="validate" pattern="^(0|[1-9][0-9]*)$">
+                        <label for="txt_cel_apoderado">Celular</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <h4>Información de Secundaria de Egreso</h4><hr>
+                      <div class="input-field col l4 s12">
+                         <select id="country" name ="txt_country" class="browser-default" required>  
+                         </select>
+                      </div>
+                      <div class="input-field col l4 s12">
+                         <select id="departamento" name ="txt_departamento" class="browser-default" required></select>
+                      </div>
+                      <div class="input-field col l4 s12">
+                          <i class="material-icons prefix">streetview</i>
+                          <input name='txt_colegio' id="" type="text" class="validate" required minlength="5" maxlength="30">
+                          <label for="txt_colegio">Colegio de Egreso</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col l4 s12">
+                        <i class="material-icons prefix">confirmation_numbe</i>
+                        <input name='txt_nroDiploma' id="" type="text" class="validate" required>
+                        <label for="txt_nroDiploma">N° Diploma de Bachiller</label>
+                    </div>
+                    <div class="input-field col l4 s12">
+                        <i class="material-icons prefix">av_timer</i>
+                        <input name='txt_gestion' id="" type="text" class="validate" required pattern="^(0|[1-9][0-9]*)$">
+                        <label for="txt_gestion">Gestion de Egreso</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col s12 center">
+                      
+                      <button type="submit" class="btn">Registrar</button>
+                      <a href="/" class="btn btn-danger" id="prueba" >Cancelar</a>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+              
+              <button type="" class="btn btn-block orange btn_printEstudiante">Imprimir</button>
+            </div>
+          </div>
+        </div>
+
+
+</template>

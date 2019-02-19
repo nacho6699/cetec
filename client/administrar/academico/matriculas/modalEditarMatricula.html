@@ -1,0 +1,40 @@
+<template name="modalEditarMatricula">
+	<!-- Modal -->
+<div class="modal fade mymodal" id="modalEditarMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+	        <h3 class="modal-title" id="exampleModalLongTitle">Editar Matricula</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+      	</div>
+
+           <form class="form" id="formEditarMatricula">
+              <div class="modal-body">
+                <h4 class="valign-wrapper"><i class="material-icons">chevron_right</i>
+                  {{estudiante.profile.nombres}} 
+                  {{estudiante.profile.apellidoP}} 
+                  {{estudiante.profile.apellidoM}}
+                </h4>
+                <div class="row">
+                  <h4>Selecione grupo</h4>
+                    <div class="input-field">
+                      <select class="browser-default" required id="sel_grupoM">
+                        <option value="" disabled selected>Seleccione Grupo</option>
+                        {{#each grupos}}
+                        <option value="{{_id}}">{{nombreGrupo}} - {{turno}} / {{horaInicio}} - {{horaFin}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" >Guardar cambios</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+          </form> 
+        </div>
+    </div>
+  </div>
+</template>

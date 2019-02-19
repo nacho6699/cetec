@@ -1,0 +1,263 @@
+<template name="gestionMatriculas">
+
+	<ul id="tabs-swipe-demo" class="tabs">
+		<li class="tab col s3">
+			<a class="active" href="#swipe-1">Matricular</a>
+		</li>
+		<li class="tab col s3">
+			<a href="#swipe-2">Ver Matriculados {{gestionActual.gestion}}</a>
+		</li>
+	</ul>
+	<!--contenido 1 del swipe-->
+	<div id="swipe-1" class="col s12 white">
+		<div class="card-panel">
+			<div id="buscarEstudiante">
+			<h3 class="text-info center">Matriculación gestión {{gestionActual.gestion}}</h3><hr>
+			<form class="form" id="formBuscarEstudiente">
+				<div class="row">
+					<div class="alert alert-info" role="alert">
+						Recuerde que el estudiante debe estar Pre - inscrito para poder ser matriculado.
+					</div>
+					<h4>Buscar Estudiante a Matricular</h4>
+					<div class="input-field col s12">
+						<i class="material-icons prefix">assignment</i>
+						<input name='txt_ci' type="text" class="validate" id="txt_ci" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required>
+						<label for="txt_gestion">Cedula de Identidad/Apellidos o Nombres</label>
+					</div>
+				</div>
+			</form>
+			
+			<table class="bordered responsive-table">
+				<caption>Lista de Estudiantes Pre-inscritos</caption>
+				<!--<colgroup><col style="red"></colgroup> para agarrar toda una colomna-->
+				<thead>
+					<tr>
+						<th>N°</th>
+						<th>C.I.</th>
+						<th>Nombres</th>
+						<th>Apellido Paterno</th>
+						<th>Apellido Materno</th>
+						<th>Carreras</th>
+						<th style="padding-left: 10px">Opción</th>
+					</tr>
+				</thead>
+
+				<tbody>
+				
+				{{#each estudiantes}}
+				{{#if ready}}
+					<tr>
+						<td></td>
+						<td>{{username}}</td>
+						<td>{{profile.nombres}}</td>
+						<td>{{profile.apellidoP}}</td>
+						<td>{{profile.apellidoM}}</td>
+						
+						<td>
+						<select class="browser-default sel_carreraEstudiante" data-id={{_id}} required>
+							<option value=""  selected>Seleccione una carrera</option>
+								{{#each profile.id_carrera}}
+									{{#each carrerasDeEstudiante}}
+										<option value="{{_id}}">{{nombreCarrera}}</option>
+									{{/each}}
+								{{/each}}
+						</select>	
+						</td>
+						<td style="padding-left: 10px">
+							<button type="button" class="btn btn-primary btn-xs selecionar{{_id}}" id="btn_seleccionar" disabled>
+								Seleccionar
+							</button>
+						</td>
+					</tr>
+					{{else}}
+			
+					<div class="center">
+							<div class="preloader-wrapper active">
+									<div class="spinner-layer spinner-red-only center">
+										<div class="circle-clipper left">
+											<div class="circle"></div>
+										</div><div class="gap-patch">
+											<div class="circle"></div>
+										</div><div class="circle-clipper right">
+											<div class="circle"></div>
+										</div>
+									</div>
+								</div>
+					</div>
+				{{/if}}
+					{{else}}
+					<tr>
+						<td colspan="4">Aun no hiciste la busqueda o el usuario no esta registrado. </td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+			<!-- matricular estudiante -->
+			
+			<div class="card-panel matricularEstudiante z-depth-4">
+				<h3 class="text-primary center">Matricular Estudiante gestión {{gestionActual.gestion}}
+					<a href="" class="secondary-content blue-text" id="btn_volverBuscar">
+						<span class="glyphicon glyphicon-chevron-up"></span> Volver a buscar
+					</a>
+				</h3><hr>
+				<h4 class="valign-wrapper">
+					<i class="material-icons">perm_identity</i>
+					{{estudianteSelect.apellidoP}} {{estudianteSelect.apellidoM}} {{estudianteSelect.nombres}}
+				</h4>
+				<h4>
+					<span class="glyphicon glyphicon-education"></span>
+					<strong>{{carreraEstudiante.nombreCarrera}}</strong>
+				</h4>
+				{{#with estaMatriculado}}
+					<div class="alert alert-danger" role="alert">
+						Es estudiante ya fue matriculado.
+					</div>
+					<button class="btn waves-effect waves-light btn-success btn-lg btn-block btn_imprimirMatricula" >Imprimir Matrícula</button>
+				{{else}}
+
+				<!--modificado por grupo-->
+				<details  style="background:#dddbdb;padding: 5px">
+					
+				<summary style="background:#424242; color:cornsilk;padding: 5px">Matricular por grupos</summary>
+				<div class="row ">
+					<table class="t_modulosMa blue-grey lighten-5 bordered responsive-table">
+
+						<thead>
+							<tr>
+								<th>N°</th>
+								<th>Modulo</th>
+								<th>Materia</th>
+								<th>Inicia</th>
+								<th>Finaliza</th>
+								<th>Selecciona Grupo</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							{{#each modulos}}
+							<tr class="{{_id}}">
+								<td></td>
+								<td>
+									<input type="checkbox" name="chek_modulo1" id="{{_id}}extra" value="{{_id}}" />
+									<label for="{{_id}}extra">{{nombreModulo}}</label>
+								</td>
+								<td>
+									<span>{{nombreMateria}}</span>
+								</td>
+								<td>{{moFormat fechaInicio 'DD-MM-YYYY'}}</td>
+								<td>{{moFormat fechaFin 'DD-MM-YYYY'}}</td>
+								<td>
+									<div class="input-field">
+										<select class="browser-default sel_grupoD" name="sel_grupoMa">
+											<option value="" disabled selected>Seleccione Grupo</option>
+		
+											{{#each grupos}}
+											<option value="{{_id}}" data-turno="{{turno}}">{{nombreGrupo}} - {{turno}} / {{horaInicio}} - {{horaFin}}
+											</option>
+											{{/each}}
+		
+										</select>
+									</div>
+								</td>
+							</tr>
+							{{else}}
+							<tr>
+								<td colspan="4">Sin módulos</td>
+							</tr>
+							{{/each}}
+							
+						</tbody>
+					</table>
+				</div>
+				<div class="row">
+					<div class="col l6 m12 s12 center">
+						<button type="submit" class="btn waves-effect waves-light btn-default btn-lg btn-block btn_matricular">Matricular</button>
+					</div>
+					<div class="col l6 m6 s12 center">
+						<button type="reset" class="btn waves-effect waves-light btn-lg btn-block red darken-3" id="btn_cancelDesignar">Cancelar</button>
+					</div>
+				</div>
+				</details>
+				<!--cerrando modificado-->
+				<form class="form" id="formMatricular">
+					<div class="row">
+						<table class="bordered responsive-table">
+							<thead>
+								<tr>
+									<th>N°</th>
+									<th>Modulos</th>
+									<th>Materia</th>
+									<th>Docentes Asignados</th>
+									<th>Grupo</th>
+									<th>Turno</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#each modulos}}
+								<tr>
+									<td></td>
+									<td>
+										<p class="valign-wrapper">
+											<input type="checkbox" id="{{_id}}" value="{{_id}}" checked />
+											<label for="{{_id}}">{{nombreModulo}}</label>
+										</p>
+									</td>
+									<td>{{nombreMateria}}</td>
+									
+										{{#each designaciones}}
+										<td>
+										<strong class="blue-text">{{docentes.profile.apellidoP}} {{docentes.profile.apellidoM}} {{docentes.profile.nombres}}
+										</strong>
+										</td>
+										<td>
+											{{grupoDocente.nombreGrupo}}
+										</td>
+										<td>
+											{{grupoDocente.turno}}
+										</td>
+										{{else}}
+										<td colspan="3"><p class="red-text center">Por designar</p></td>
+										{{/each}}
+									
+								</tr>
+								{{else}}
+								<tr>
+									<td colspan="4">Aun no hiciste la busqueda o no hay modulos</td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+
+					</div>
+					<div class="row">
+						<h4>Selecione grupo</h4>
+						<div class="input-field">
+							<select class="browser-default" required id="sel_grupoM">
+								<option value="" selected>Seleccione Grupo</option>
+								{{#each grupos}}
+								<option value="{{_id}}">{{nombreGrupo}} - {{turno}} / {{horaInicio}} - {{horaFin}}</option>
+								{{/each}}
+							</select>
+						</div>
+					</div>
+					<div class="row">
+							<div class="col l6 m6 s12 center">
+									<button type="submit" class="btn waves-effect waves-light btn-primary btn-lg btn-block" >Matricular</button>
+								</div>
+								<div class="col l6 m6 s12 center">
+									<button type="reset" class="btn waves-effect waves-light btn-lg btn-block red darken-3" id="btn_cancelMatricular" >Cancelar</button>
+							</div>
+					</div>
+				</form>
+				{{/with}}
+			</div>
+			
+		</div>
+	</div>
+	<!--contenido 2 del swipe-->
+	<div id="swipe-2" class="col s12 white">
+		{{> verMatriculados}}
+	</div>
+
+</template>

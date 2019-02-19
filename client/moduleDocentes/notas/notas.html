@@ -1,0 +1,74 @@
+<template name="notas">
+	<div class="row contenidoNotas">
+      	<div class="col l12 s12 ">
+        	<div class="card-panel white">
+         	<section id="sec_modulos">
+         		<h2 class="blue-text">Registro de Notas </h2><hr>
+         		<p><h3>Seleciona la gestión</h3></p>
+         		<hr>
+         		{{#each gestiones}}
+         			<button type="button" class="btn btn-primary btn-lg btn-block btn_selGestiones">
+         				Gestión {{gestion}}
+         			</button>
+         		{{/each}}
+         	</section>
+         	<section id="sec_listaDesignacion">
+         	 	<table class="bordered responsive-table ">
+		        	<caption class="center">Lista de Modulos Asignados gestión {{gestionPresionado}}</caption>
+		        	<!--<colgroup><col style="red"></colgroup> para agarrar toda una colomna-->
+			        <thead>
+			          <tr>
+			              <th>N°</th>
+			              <th>Carreras</th>
+			              <th>Modulos</th>
+			              <th>Materias</th>
+			              <th>Sigla</th>
+			              <th>Inicia</th>
+			              <th>Finaliza</th>
+			              <th>Grupo</th>
+			              <th>Selecionar</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			        {{#each gestionElegida}}	
+				        {{#each designaciones }}
+								<tr>
+									{{#each modulos}}
+									<td></td><!--numero desde css-->
+									<td>{{carreras.nombreCarrera}}</td>
+									<td>{{nombreModulo}}</td>
+									<td>{{nombreMateria}}</td>
+									<td>{{sigla}}</td>
+									<td>{{formatDate(fechaInicio)}}</td>
+									<td>{{formatDate(fechaFin)}}</td>
+									{{/each}}
+									<td>
+										{{grupos.nombreGrupo}} {{grupos.turno}}
+									</td>
+									<td>
+										{{#if moduloActual}}
+										<a class="btn_seleccionar">
+											<i class="material-icons">create</i> Seleccionar
+										</a>
+										{{else}}
+										<a class="text-danger" ng-disabled="true">
+												<i class="material-icons">create</i>Deshabilitado
+											</a>
+										{{/if}}
+									</td>
+								</tr>
+				        {{else}}
+				          <tr><td colspan="7"><h1 class="center">Sin modulos Asignados</h1></td></tr>
+				        {{/each}}
+			        {{else}}
+			          <p>No existe gestiones</p>
+			        {{/each}}
+			        </tbody>
+			    </table>
+			</section> 
+       		</div>
+      	</div>
+    </div>
+    {{>planillaNotas}}
+
+</template>

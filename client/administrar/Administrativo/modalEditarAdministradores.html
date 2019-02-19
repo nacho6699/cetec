@@ -1,0 +1,76 @@
+
+<template name="modalEditarAdministradores">
+	<!-- Modal -->
+<div class="modal fade mymodal" id="modalEditarAdministradores" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+	        <h3 class="modal-title" id="exampleModalLongTitle">Editar Datos</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+      	</div>
+      	<form class="form" id="formEditarAdmin">
+      		<div class="modal-body">
+            
+             	  <div class="row">
+             		<label for="nombres">Nombres</label>
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input name='txt_nombres' id="nombres" type="text" class="validate" required="" aria-required="true" value="{{datosUsuario.profile.nombres}}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                      <h4>Apellido Paterno</h4>	
+                      <i class="material-icons prefix">people</i>
+                      <input name='txt_Ap' id="apellidoP" type="text" class="validate" value="{{datosUsuario.profile.apellidoP}}">
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                      <h4>Apellido Materno</h4>	
+                      <i class="material-icons prefix">people</i>
+                      <input name='txt_Am' id="apellidoM" type="text" class="validate" value="{{datosUsuario.profile.apellidoM}}">
+                    </div>
+                  </div>
+                  <div class="row">
+                  	<div class="input-field col l6 m6 s12">
+                  	  <h4>C.I.</h4>	
+                      <i class="material-icons prefix">perm_identity</i>
+                      <input name='txt_ci' id="ci" type="text" class="validate" required value="{{datosUsuario.username}}">
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                      <h4>Correo</h4>	
+                      <i class="material-icons prefix">email</i>
+                      <input name="email" id="email" type="email" class="validate" required="" aria-required="true" value="{{datosUsuario.email.address}}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <h4>Telf./Cl</h4>
+                      <i class="material-icons prefix">contact_phone</i>
+                      <input name='txt_telefono' id="" type="text" class="validate" value="{{datosUsuario.profile.telefono}}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                      <i class="material-icons prefix">fingerprint</i>
+                      <input id="password" type="password" class="validate" name='password' required>
+                      <label for="password">Password</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                      <i class="material-icons prefix">fingerprint</i>
+                      <input id="passwordConfirm" type="password" required>
+                      <label id="lblPasswordConfirm" for="passwordConfirm" data-error="Error verifique" data-success="Correcto">Password (Confirm)</label>
+                    </div>
+                  </div>
+           
+	      	</div>
+	      	<div class="modal-footer">
+                <button type="submit" class="btn btn-primary" >Guardar cambios</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	     	</div>
+     	</form>
+    </div>
+  </div>
+</div>
+</template>

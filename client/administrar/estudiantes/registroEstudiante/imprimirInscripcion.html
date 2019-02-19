@@ -1,0 +1,50 @@
+<template name="imprimirInscripcion">
+	<div class="row card-panel" id="preInscripcion">
+			<img src="/img/favicon.jpg" alt="" width="50px" height="60px" class="left">
+			<img src="/img/potosi.png" alt="" width="50px" height="60px" class="right">
+			<header class="center">
+				<h3 class="tituloPrint" style="color:red"><b>CENTRO DE ESTUDIOS TÉCNICO "CETEC"</b></h3>
+				<h4 class="center"> Planilla de Pre-Inscripción</h4><hr>
+			</header>
+		<article class="center">
+			<table>
+				<tr>
+					<td>
+						{{estudiante.username}}
+					</td>
+				</tr>
+			</table>
+		</article>
+	</div>
+
+	<script>
+		function HTMLtoPDF(){
+		  var pdf = new jsPDF('p', 'pt', 'letter');
+		  source = $('#preInscripcion')[0];
+		  specialElementHandlers = {
+			  '#bypassme': function(element, renderer){
+				  return true
+			  }
+		  }
+		  margins = {
+			  top: 50,
+			  left: 37,
+			  width: 545
+			};
+		  pdf.fromHTML(
+				source // HTML string or DOM elem ref.
+				, margins.left // x coord
+				, margins.top // y coord
+				, {
+					'width': margins.width // max width of content on PDF
+					, 'elementHandlers': specialElementHandlers
+				},
+				function (dispose) {
+				  // dispose: object with X, Y of the last line add to the PDF
+				  //          this allow the insertion of new lines after html
+				  pdf.save('prueba.pdf');
+				}
+			)		
+		  }
+	  </script>
+</template>

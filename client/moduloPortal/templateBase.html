@@ -1,0 +1,36 @@
+<template name="templateBase">
+<head>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="panel_editor/editor.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<meta name="descripcion" content="Centro de Estudios Técnico Cetec">
+	<meta charset="utf-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+	<!--<link rel="shortcut icon" href="/img/favicon.jpeg">-->
+	<title></title>
+	
+</head>
+	<body class="hidden-sn mdb-skin">
+	
+	<div class="container" >
+		<div class="row">
+			<header id="header" class="">
+				{{> Template.dynamic template=menu_nav}}
+			</header>
+		</div>
+		<div class="row" >
+
+			{{> Template.dynamic template=opciones}}
+			
+			{{> Template.dynamic template=contenido_menu}}
+
+			{{> Template.dynamic template=articulos}}
+		
+		</div>
+		{{> floting}}
+	</div>
+
+	<script src="panel_editor/editor.js" type="text/javascript"></script>
+	</body>
+	
+</template>

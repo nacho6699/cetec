@@ -1,0 +1,84 @@
+<template name="gestionMaterias">
+	<div class="panel panel-primary">
+		  <div class="panel-heading"><h4 class="center">Gestionar Materias</h4></div>
+		  <div class="panel-body blue lighten-5">
+		  	<div class="row">
+		  		<div class="col l6 m12 s12 ">
+		  			<div class="card">
+			  			<div class="card-content">
+			  			<h3 class="center">Nueva Materia</h3><hr>	
+					  	<form class="form" id="formRegistrarMateria">
+			             	<h4>Selecciona Carrera</h4>
+			                <div class="row">
+			                    <div class="input-field">
+			                      <select class="browser-default" required id="sel_carrera">
+			                        <option value="" disabled selected>Seleccione Carrera</option>
+			                        {{#each carreras}}
+			                        <option value="{{_id}}">{{nombreCarrera}}</option>
+			                        {{/each}}
+			                      </select>
+			                    </div>
+			                </div>
+			                <div class="row">
+			                    <div class="input-field col s12">
+			                      <i class="material-icons prefix">assignment</i>
+			                      <input name='txt_nombreMateria' type="text" class="validate" required>
+			                      <label for="txt_nombreMateria">Nombre de Materia</label>
+			                    </div>
+			                </div>
+			                <div class="row">
+			                    <div class="input-field col s12">
+			                      <i class="material-icons prefix">assignment</i>
+			                      <input name='txt_sigla' type="text" class="validate" required>
+			                      <label for="txt_sigla">Sigla de Materia</label>
+			                    </div>
+			                </div>
+			                <div class="row">
+			                    <div class="col s12 center">
+			                     	<button type="submit" class="btn btn-primary" >Crear Materia</button>
+			                    </div>
+			                </div>
+			            </form>
+			            </div>
+		            </div>
+            	</div>
+            	<div class="col l6 m12 s12">
+            		<div class="card">
+			  			<div class="card-content">
+			  			<h3>Eliminar y Actualizar materias</h3><hr>
+							<h4>Buscar materias por carreras</h4>
+							<div class="row">
+			                    <div class="input-field">
+			                      <select class="browser-default" required id="select_carrera">
+			                        <option value="" disabled selected>Seleccione Carrera</option>
+			                        {{#each carreras}}
+			                        <option value="{{_id}}">{{nombreCarrera}}</option>
+			                        {{/each}}
+			                      </select>
+			                    </div>
+			                </div>
+			                <div class="row">
+			                	<ul class="collection with-header">
+							        <li class="collection-header"><h4>Materias</h4></li>
+							        {{#each result_materias}}
+							        	<li class="collection-item">
+							        		<div>
+							        			<strong>{{nombreMateria}} </strong> <span>{{sigla}}</span>
+							        			<a href="" class="secondary-content blue-text" id="btn_editarMateria" data-toggle="modal" data-target="#modalEditarCar">
+							        				<i class="material-icons">mode_edit</i>
+							        			</a>
+							        			<a href="#!" class="secondary-content red-text" id="btn_borrarMateria">
+							        				<i class="material-icons">delete_forever</i>
+							        			</a>
+							        		</div>
+							        	</li>
+							        {{/each}}
+							    </ul>
+			                </div>
+			  			</div>
+			  		</div>
+            	</div>
+            </div>
+		  </div>
+		</div>
+</template>

@@ -1,0 +1,155 @@
+<template name="kardexDocente">
+	<div class="card-panel buscarDocente">
+		<form class="form" id="formBuscarDocente">
+			<h3 class="text-info center">Reportes Docente gestión {{gestionActual.gestion}}</h3>
+			<hr>
+			
+			
+			<fieldset>
+				<legend>Buscar Docente
+
+				</legend>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">assignment</i>
+						<input name='txt_ciDocente' type="text" class="validate" id="txt_ciDocente" autocomplete="off" required>
+						<label for="txt_gestion">Cedula de Identidad/Apellido o Nombre</label>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<h4>Lista de Docentes</h4>
+
+		<table class="bordered responsive-table centered">
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>C.I.</th>
+					<th>Nombres</th>
+					<th>Apellido Paterno</th>
+					<th>Apellido Materno</th>
+					<th>Opcion</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{{#each docentes}}
+				<tr>
+					<td></td>
+					<td>{{username}}</td>
+					<td>{{profile.nombres}}</td>
+					<td>{{profile.apellidoP}}</td>
+					<td>{{profile.apellidoM}}</td>
+					<td>
+						<a href="#!" class="valign-wrapper" id="btn_seleccionarDoc">
+							<i class="material-icons">add_box</i>Seleccionar
+						</a>
+					</td>
+				</tr>
+
+				{{else}}
+				<tr>
+					<td colspan="4">Aun no hiciste la busqueda o el usuario no esta registrado. </td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+        <hr>
+    </div>
+
+					<div class="row kardexDocente">
+						<div class="col s12 user-details">
+							<div class="user-image">
+								{{#if avatar}}
+									<img alt="" class="img-circle" src="{{avatar}}" width="100px" height="100px"/>			
+								{{else}} 
+									<img alt="" class="img-circle" src="img/default_avatar.png" width="100px" height="100px"/>
+								{{/if}}
+							</div>
+							<div class="user-info-block">
+								<div class="user-heading">
+									<h3>{{docenteSelect.apellidoP}} {{docenteSelect.apellidoM}} {{docenteSelect.nombres}}</h3>
+									<span class="help-block">{{docenteSelect.correo}}
+										
+									</span>
+									<a href="" class="secondary-content blue-text" id="btn_volver" style="padding-right:20px ">
+										<span class="glyphicon glyphicon-menu-left"></span> Volver
+									</a>
+								</div>
+								<ul class="navigation">
+									<li class="active">
+										<a data-toggle="tab" href="#information">
+											<span class="glyphicon glyphicon-user"> Datos personales</span>
+										</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#settings">
+											<span class="glyphicon glyphicon-cog"> Modulos asignados</span>
+										</a>
+									</li>
+									
+								</ul>
+								<div class="user-body col s12" >
+									<div class="tab-content">
+										<div id="information" class="tab-pane active">
+											<blockquote>
+												<ul class="collection">
+													<li class="collection-item"><strong>CI: </strong>{{docenteSelect.ci}}<br></li>
+													<li class="collection-item"><strong>Apellido Paterno: </strong>{{docenteSelect.apellidoP}}<br></li>
+													<li class="collection-item"><strong>Apellido Materno: </strong>{{docenteSelect.apellidoM}}<br></li>
+													<li class="collection-item"><strong>Correo: </strong>{{docenteSelect.correo}}<br></li>
+													<li class="collection-item"><strong>Contraceña: </strong>{{docenteSelect.contracena}}<br></li>
+													<li class="collection-item"><strong>Telefono: </strong>{{docenteSelect.telefono}}<br></li>
+													<li class="collection-item"><strong>Profesión: </strong>{{docenteSelect.profesion}}</li>
+												</ul>
+												<a href="#!" class="btn btn-default valign-wrapper red-text btn_kardexDocente">
+													Generar kardex <i class="material-icons">local_printshop</i>
+												</a>	
+											</blockquote>
+										</div>
+										<div id="settings" class="tab-pane">
+												<table class="bordered responsive-table">
+														<caption>Designaciones</caption>
+														<!--<colgroup><col style="red"></colgroup> para agarrar toda una colomna-->
+														<thead>
+															<tr>
+																<th>N°</th>
+																<th>Carreras</th>
+																<th>Módulos</th>
+																<th>Materia</th>
+																<th>Inicio</th>
+																<th>Fin</th>
+															</tr>
+														</thead>
+														<tbody>
+														
+														{{#each designaciones}}
+															{{#each modulosAsignados}}
+															<tr>
+																<td></td>
+																<td>{{carrerasAsignadas.nombreCarrera}}</td>
+																<td>{{nombreModulo}}</td>
+																<td>{{nombreMateria}}</td>
+																<td>{{formatDate(fechaInicio)}}</td>
+																<td>{{formatDate(fechaFin)}}</td>
+										
+															</tr>
+															{{/each}}
+														{{else}}
+															<tr>
+																<td colspan="4">Aun no hiciste la busqueda o no tiene Módulos asignados. </td>
+															</tr>
+														{{/each}}
+														</tbody>
+													</table>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+</template>

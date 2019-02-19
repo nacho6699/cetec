@@ -1,0 +1,67 @@
+<template name="calificaciones">
+
+    <div id="contenedorCarrerasCal">
+         <div class="alert alert-info" role="alert">
+              Debe seleccionar una carrera para poder ver sus calificaciones de esta gestión.
+         </div>
+         {{#each carrerasUserCal}}
+             <button class="btn waves-effect waves-light btn-primary btn-lg btn-block btn_carreraNotasCal" >{{carrerasCal.nombreCarrera}}</button>
+        {{/each}}
+     </div>
+        <div class="panel panel-default contenedorModulosCal">
+                
+                <div class="panel-body">
+                    <h4>
+                    <strong class="text-info">{{carreraElegidaCal.nombreCarrera}}</strong>
+                         Calificaciones
+                        <a href="" class="secondary-content blue-text btn_volverCalificacionesCal">
+                            <span class="glyphicon glyphicon-arrow-left"></span> Volver
+                        </a>
+                    </h4><hr>
+                    <table class="table table-bordered centered">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Modulo</th>
+                                <th>1er parcial</th>
+                                <th>2do parcial</th>
+                                <th>Promedio P</th>
+                                <th>Asistencia</th>
+                                <th>Eval C.</th>
+                                <th>Examen E</th>
+                                <th>Examen P</th>
+                                <th>Final</th>
+                                <th>Segunda Ins.</th>
+                            </tr>
+                        </thead>
+                      
+                              <tbody>
+                              {{#with carreraElegidaCal}} 
+                                
+                                  {{#each modulosCal}}
+                                    {{#each notas}}
+                                    <tr>
+                                        <td></td>
+                                        <td>{{nombreModulo.nombreModulo}}</td>
+                                        <td>{{primerP}}</td>
+                                        <td>{{segundoP}}</td>
+                                        <td>{{promP}}</td>
+                                        <td>{{asistencia}}</td>
+                                        <td>{{evaluacionC}}</td>
+                                        <td>{{examenF_e}}</td>
+                                        <td>{{examenF_p}}</td>
+                                        <td>{{total}}</td>
+                                        <td>{{segundaInstancia}}</td>
+                                    </tr>    
+                                    {{/each}}
+                                        
+                                  {{/each}}
+                                  
+                              {{else}}
+                                      <tr><td>No tiene módulos programados</td></tr>
+                              {{/with}}
+                              </tbody>
+                          </table>
+                </div>
+            </div>
+</template>

@@ -1,0 +1,55 @@
+<template name="verDesignaciones">
+    <h3 class="text-info center">Ver designaciones gestión {{gestionActual.gestion}}</h3>
+    <div class="row">
+            <div class="input-field">
+                <h4>Selecciona una Carrera para cargar los detalles</h4>
+                <select class="browser-default" required id="sel_carreraDesignacion">
+                    <option value="" disabled selected>--Carreras--</option>
+                    {{#each carreras}}
+                    <option value="{{_id}}">{{nombreCarrera}}</option>
+                    {{/each}}
+                </select>
+            </div>
+    </div>
+        <h4>Docentes asignados</h4>
+        <div class="row">
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Docente</th>
+                        <th>Modulo</th>
+                        <th>Materia</th>
+                        <th>Turno</th>
+                        <th>Grupo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each designaciones}}
+                    
+                    <tr>
+                        <td></td>
+                        <td>{{docente.profile.apellidoP}} {{docente.profile.apellidoM}}, {{docente.profile.nombres}}</td>
+                        {{#each modulos}}
+                        <td>
+                            <strong>{{nombreModulo}}</strong>
+                        </td>
+                        <td>
+                            <span>{{nombreMateria}}</span>
+                        </td>
+                        {{else}}
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        {{/each}}
+                        <td>{{grupos.turno}}</td>
+                        <td>{{grupos.nombreGrupo}}</td>
+                    </tr>
+                    
+                {{/each}}  
+                </tbody>
+            </table>
+        </div>
+</template>    
