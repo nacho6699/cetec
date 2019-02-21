@@ -187,3 +187,11 @@ background: #d81b60;
   transition: 1s;
 }
 
+/*------------------------*/
+.cajaVidrio{
+  background-color:rgba(0,0,0,0.4);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
